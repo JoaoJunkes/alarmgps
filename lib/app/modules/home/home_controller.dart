@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mobx/mobx.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 part 'home_controller.g.dart';
 
@@ -17,6 +17,9 @@ abstract class _HomeControllerBase with Store {
   @observable
   String searchAddr;
 
+  @observable
+  MapType mapType = MapType.hybrid;
+
   testeSnack(GlobalKey<ScaffoldState> scaffoldKey) {
     scaffoldKey.currentState.showSnackBar(SnackBar(
       duration: Duration(seconds: 5),
@@ -25,8 +28,8 @@ abstract class _HomeControllerBase with Store {
   }
 
   @action
-  findLocation() async {
-
+  alterTypeMap() async {
+    mapType = mapType == MapType.normal ? MapType.hybrid : MapType.normal;
   }
 
 }
