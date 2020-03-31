@@ -1,3 +1,4 @@
+import 'package:alarmgps/app/utils/alarm_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -37,6 +38,15 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             return Stack(
               children: <Widget>[
                 GoogleMap(
+                  onLongPress: (info){
+                    print(info);
+                    showDialog(
+                      context: _scaffoldKey.currentContext,
+                      builder: (BuildContext context) {
+                        return AlarmInput();
+                      }
+                    );
+                  },
                   mapType: controller.mapType,
                   initialCameraPosition: getInitialPos(),
                   onMapCreated: (GoogleMapController controller) {

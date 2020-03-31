@@ -1,8 +1,8 @@
 import 'package:alarmgps/app/modules/loading/loading_controller.dart';
 import 'package:alarmgps/app/app_controller.dart';
-import 'package:alarmgps/app/modules/home/home_controller.dart';
 import 'package:alarmgps/app/modules/home/home_module.dart';
 import 'package:alarmgps/app/modules/loading/loading_page.dart';
+import 'package:alarmgps/app/utils/alarm_input.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:alarmgps/app/app_widget.dart';
