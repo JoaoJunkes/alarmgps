@@ -10,7 +10,7 @@
         android:label="alarmgps"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-                   android:value="AIzaSyDnCAVRfifIm7BPqF7za5gpH_mIpm4Y_6E"/>
+                   android:value="API_KEY_GOOGLE"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
