@@ -62,7 +62,7 @@ class AlarmInput extends StatelessWidget {
                 color: Colors.white,
                 child: Text("Gravar"),
                 onPressed: () {
-
+                  Navigator.pop(context);
                 },
                 shape: new RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(30.0),
