@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class AlarmInput extends StatelessWidget {
 
@@ -62,7 +63,7 @@ class AlarmInput extends StatelessWidget {
                 color: Colors.white,
                 child: Text("Gravar"),
                 onPressed: () {
-                  Navigator.pop(context);
+                  Modular.to.pop();
                 },
                 shape: new RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(30.0),

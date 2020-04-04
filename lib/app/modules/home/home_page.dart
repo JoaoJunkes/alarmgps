@@ -1,4 +1,5 @@
 import 'package:alarmgps/app/utils/alarm_input.dart';
+import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -18,15 +19,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends ModularState<HomePage, HomeController> {
 
-  Geolocator _location = Modular.get<Geolocator>();
-
   final Position currentLocation;
-
-  GoogleMapController mapController;
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   _HomePageState(this.currentLocation);
+
+  @override
+  void initState() {
+    super.initState();
+    controller.loadLocation();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,8 +52,8 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                   },
                   mapType: controller.mapType,
                   initialCameraPosition: getInitialPos(),
-                  onMapCreated: (GoogleMapController controller) {
-                    mapController = controller;
+                  onMapCreated: (GoogleMapController googleController) {
+                    controller.mapController = googleController;
                   },
                 ),
                 Positioned(
@@ -82,7 +85,8 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                       },
                     ),
                   ),
-                )
+                ),
+                Center(child: circleCenter)
               ],
             );
           }
@@ -100,8 +104,8 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   }
 
   searchAndNavigate() async {
-    _location.placemarkFromAddress(controller.searchAddr).then((result) {
-      mapController.animateCamera(CameraUpdate.newCameraPosition(
+    controller.location.placemarkFromAddress(controller.searchAddr).then((result) {
+      controller.mapController.animateCamera(CameraUpdate.newCameraPosition(
         CameraPosition(
           target: LatLng(result[0].position.latitude, result[0].position.longitude),
           zoom: 14.4746
@@ -117,5 +121,12 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       zoom: 14.4746
     );
   }
+
+  Widget circleCenter = new Container(
+    width: 200.0,
+    height: 200.0,
+    child:
+      FlareActor("assets/pointMap.flr", animation: "point", )
+  );
 
 }
